@@ -1,0 +1,28 @@
+DROP table LAB2_ZV_USER cascade constraints;
+
+DROP table LAB2_ZV_EMPLOYEE cascade constraints;
+
+DROP table LAB2_ZV_PROJECT cascade constraints;
+
+DROP table LAB2_ZV_CUSTOMER cascade constraints;
+
+DROP table LAB2_ZV_LOCATION cascade constraints;
+
+DROP table LAB2_ZV_REQUIREMENTS cascade constraints;
+
+DROP table LAB2_ZV_JOB cascade constraints;
+
+----
+DROP SEQUENCE  "LAB2_ZV_USER_SEQ";
+
+DROP SEQUENCE  "LAB2_ZV_EMPLOYEE_SEQ";
+
+DROP SEQUENCE  "LAB2_ZV_PROJECT_SEQ";
+
+DROP SEQUENCE  "LAB2_ZV_CUSTOMER_SEQ";
+
+DROP SEQUENCE  "LAB2_ZV_LOCATION_SEQ";
+
+DROP SEQUENCE  "LAB2_ZV_REQUIREMENTS_SEQ";
+
+DROP SEQUENCE  "LAB2_ZV_JOB_SEQ";
