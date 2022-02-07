@@ -30,10 +30,10 @@ public class JobParse {
 
     private Job getJob(ResultSet resultSet) {
         try {
-            int id = resultSet.getInt("JOB_ID");
-            String name = resultSet.getString("JOB_NAME");
-            int salary = resultSet.getInt("JOB_BASE_SALARY");
-            int premium = resultSet.getInt("JOB_PREMIUM");
+            int id = resultSet.getInt(ColumnLabel.JOB_ID);
+            String name = resultSet.getString(ColumnLabel.JOB_NAME);
+            int salary = resultSet.getInt(ColumnLabel.JOB_BASE_SALARY);
+            int premium = resultSet.getInt(ColumnLabel.JOB_PREMIUM);
 
             job = new Job(id, name, salary, premium);
 

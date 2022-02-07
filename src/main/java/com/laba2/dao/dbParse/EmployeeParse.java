@@ -30,12 +30,12 @@ public class EmployeeParse {
 
     public Employee getEmployee(ResultSet resultSet) {
         try {
-            int id = resultSet.getInt("EMPLOYEE_ID");
-            String firstname = resultSet.getString("FIRSTNAME");
-            String lastname = resultSet.getString("LASTNAME");
-            int project = resultSet.getInt("PROJECT_ID");
-            int job = resultSet.getInt("JOB_ID");
-            int salary = resultSet.getInt("SALARY");
+            int id = resultSet.getInt(ColumnLabel.EMPLOYEE_ID);
+            String firstname = resultSet.getString(ColumnLabel.FIRSTNAME);
+            String lastname = resultSet.getString(ColumnLabel.LASTNAME);
+            int project = resultSet.getInt(ColumnLabel.PROJECT_ID);
+            int job = resultSet.getInt(ColumnLabel.JOB_ID);
+            int salary = resultSet.getInt(ColumnLabel.SALARY);
             employee = new Employee(id, firstname, lastname, project, job, salary);
 
         } catch (SQLException e) {

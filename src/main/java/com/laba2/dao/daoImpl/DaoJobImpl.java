@@ -52,7 +52,7 @@ public class DaoJobImpl implements DaoJob {
     public List<Job> selectAllJob() {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call selectAllJob()");
-            preparedStatement = connection.prepareStatement("SELECT * FROM LAB2_ZV_JOB");
+            preparedStatement = connection.prepareStatement(SqlQuery.SELECT_ALL_JOB);
             resultSet = preparedStatement.executeQuery();
             jobList = jobParse.getAllJob(resultSet);
             return jobList;
@@ -68,13 +68,13 @@ public class DaoJobImpl implements DaoJob {
     public Job findById(int id) {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call findById()");
-            preparedStatement = connection.prepareStatement("SELECT * FROM LAB2_ZV_JOB WHERE JOB_ID = ?");
+            preparedStatement = connection.prepareStatement(SqlQuery.FIND_JOB_BY_ID);
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
             job = jobParse.getOneJob(resultSet);
             return job;
         } catch (SQLException e) {
-            logger.error("SQLException in findById"+e.getMessage());
+            logger.error("SQLException in findById" + e.getMessage());
         } finally {
             close();
         }
@@ -85,15 +85,14 @@ public class DaoJobImpl implements DaoJob {
     public void editJob(Job job) {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call editJob()");
-            preparedStatement = connection.prepareStatement("UPDATE LAB2_ZV_JOB" +
-                    " SET JOB_NAME = ?,JOB_BASE_SALARY = ?, JOB_PREMIUM = ? WHERE JOB_ID = ?");
+            preparedStatement = connection.prepareStatement(SqlQuery.EDIT_JOB);
             preparedStatement.setString(1, job.getJobName());
             preparedStatement.setInt(2, job.getSalary());
             preparedStatement.setInt(3, job.getPremium());
             preparedStatement.setInt(4, job.getId());
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e) {
-            logger.error("SQLException in editJob() "+e.getMessage());
+            logger.error("SQLException in editJob() " + e.getMessage());
         } finally {
             close();
         }
@@ -103,11 +102,11 @@ public class DaoJobImpl implements DaoJob {
     public void deleteJob(int id) {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call deleteJob()");
-            preparedStatement = connection.prepareStatement("DELETE LAB2_ZV_JOB WHERE JOB_ID = ?");
+            preparedStatement = connection.prepareStatement(SqlQuery.DELETE_JOB);
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e) {
-            logger.error("SQLException in delete"+e.getMessage());
+            logger.error("SQLException in delete" + e.getMessage());
         } finally {
             close();
         }
@@ -117,15 +116,13 @@ public class DaoJobImpl implements DaoJob {
     public void createJob(Job job) {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call createJob()");
-            preparedStatement = connection.prepareStatement("INSERT INTO LAB2_ZV_JOB " +
-                    "(JOB_ID, JOB_NAME, JOB_BASE_SALARY, JOB_PREMIUM)  " +
-                    "VALUES (LAB2_ZV_JOB_SEQ.nextval, ?, ?, ?)");
+            preparedStatement = connection.prepareStatement(SqlQuery.CREATE_JOB);
             preparedStatement.setString(1, job.getJobName());
             preparedStatement.setInt(2, job.getSalary());
             preparedStatement.setInt(3, job.getPremium());
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e) {
-            logger.error("SQLException in create"+e.getMessage());
+            logger.error("SQLException in create" + e.getMessage());
         } finally {
             close();
         }

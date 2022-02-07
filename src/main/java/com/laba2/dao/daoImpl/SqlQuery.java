@@ -1,0 +1,42 @@
+package com.laba2.dao.daoImpl;
+
+public class SqlQuery {
+    public static final String SELECT_ALL_CUSTOMERS = "SELECT * FROM LAB2_ZV_CUSTOMER";
+    public static final String DELETE_CUSTOMER = "DELETE LAB2_ZV_CUSTOMER WHERE CUSTOMER_ID = ?";
+    public static final String CREATE_CUSTOMER = "INSERT INTO LAB2_ZV_CUSTOMER (CUSTOMER_ID, COMPANY_NAME, COMPANY_BUDGET) VALUES (LAB2_ZV_REQUIREMENTS_SEQ.nextval, ?, ?)";
+    public static final String SELECT_ALL_EMPLOYEE = "SELECT * FROM LAB2_ZV_EMPLOYEE ORDER BY EMPLOYEE_ID";
+    public static final String FIND_EMPLOYEE_BY_ID = "SELECT * FROM LAB2_ZV_EMPLOYEE WHERE EMPLOYEE_ID = ?";
+    public static final String FIND_BY_PROJECT_ID = "SELECT * FROM LAB2_ZV_EMPLOYEE WHERE EMPLOYEE_ID = ?";
+    public static final String FIND_BY_JOB_ID = "SELECT * FROM LAB2_ZV_EMPLOYEE WHERE JOB_ID = ?";
+    public static final String EDIT_EMPLOYEE = "UPDATE LAB2_ZV_EMPLOYEE SET FIRSTNAME = ?,LASTNAME = ?, PROJECT_ID = ?, JOB_ID = ?, SALARY = ? WHERE EMPLOYEE_ID = ?";
+    public static final String DELETE_EMPLOYEE = "DELETE LAB2_ZV_EMPLOYEE WHERE EMPLOYEE_ID = ?";
+    public static final String CREATE_EMPLOYEE = "INSERT INTO LAB2_ZV_EMPLOYEE (EMPLOYEE_ID, FIRSTNAME, LASTNAME, PROJECT_ID, JOB_ID, SALARY) " +
+            "VALUES (LAB2_ZV_EMPLOYEE_SEQ.nextval, ?, ?, ?, ?, ?)";
+    public static final String SELECT_ALL_JOB = "SELECT * FROM LAB2_ZV_JOB";
+    public static final String FIND_JOB_BY_ID = "SELECT * FROM LAB2_ZV_JOB WHERE JOB_ID = ?";
+    public static final String EDIT_JOB = "UPDATE LAB2_ZV_JOB SET JOB_NAME = ?,JOB_BASE_SALARY = ?, JOB_PREMIUM = ? WHERE JOB_ID = ?";
+    public static final String DELETE_JOB = "DELETE LAB2_ZV_JOB WHERE JOB_ID = ?";
+    public static final String CREATE_JOB = "INSERT INTO LAB2_ZV_JOB (JOB_ID, JOB_NAME, JOB_BASE_SALARY, JOB_PREMIUM) VALUES (LAB2_ZV_JOB_SEQ.nextval, ?, ?, ?)";
+    public static final String SELECT_ALL_LOCATION = "SELECT * FROM LAB2_ZV_LOCATION";
+    public static final String DELETE_LOCATION = "DELETE LAB2_ZV_LOCATION WHERE LOCATION_ID = ?";
+    public static final String CREATE_LOCATION = "INSERT INTO LAB2_ZV_LOCATION (LOCATION_ID, CITY, ADDRESS, AREA, PERMISSION) " +
+            "VALUES (LAB2_ZV_REQUIREMENTS_SEQ.nextval, ?, ?, ?, ?)";
+    public static final String SELECT_ALL_PROJECT = "SELECT * FROM LAB2_ZV_PROJECT";
+    public static final String FIND_PROJECT_BY_ID = "SELECT * FROM LAB2_ZV_PROJECT WHERE PROJECT_ID = ?";
+    public static final String EDIT_PROJECT = "UPDATE LAB2_ZV_PROJECT SET PROJECT_NAME = ?,BUDGET = ?, LOCATION_ID = ?, CUSTOMER_ID = ?, " +
+            "REQUIREMENTS_ID = ?, TIME_TO_BUILD = ? WHERE PROJECT_ID = ?";
+    public static final String CREATE_PROJECT = "INSERT INTO LAB2_ZV_PROJECT (PROJECT_ID, PROJECT_NAME, BUDGET, LOCATION_ID, CUSTOMER_ID, REQUIREMENTS_ID, TIME_TO_BUILD) " +
+            "VALUES (LAB2_ZV_PROJECT_SEQ.nextval, ?, ?, ?, ?, ?, ?)";
+    public static final String DELETE_PROJECT = "DELETE LAB2_ZV_PROJECT WHERE PROJECT_ID = ?";
+    public static final String FIND_BY_CUSTOMER_ID = "SELECT * FROM LAB2_ZV_PROJECT WHERE CUSTOMER_ID = ?";
+    public static final String FIND_BY_LOCATION_ID = "SELECT * FROM LAB2_ZV_PROJECT WHERE LOCATION_ID = ?";
+    public static final String FIND_BY_REQUIREMENTS_ID = "SELECT * FROM LAB2_ZV_PROJECT WHERE REQUIREMENTS_ID = ?";
+    public static final String SELECT_ALL_REQUIREMENTS = "SELECT * FROM LAB2_ZV_REQUIREMENTS";
+    public static final String DELETE_REQUIREMENTS = "DELETE LAB2_ZV_REQUIREMENTS WHERE REQUIREMENTS_ID = ?";
+    public static final String CREATE_REQUIREMENTS = "INSERT INTO LAB2_ZV_REQUIREMENTS (REQUIREMENTS_ID, MATERIAL, COLOR, TYPE, FLOORS_COUNT) " +
+            "VALUES (LAB2_ZV_REQUIREMENTS_SEQ.nextval, ?, ?, ?, ?)";
+    public static final String SELECT_ALL_USER = "SELECT * FROM LAB2_ZV_USER ORDER BY EMPLOYEE_ID";
+    public static final String DELETE_USER = "DELETE LAB2_ZV_USER WHERE EMPLOYEE_ID = ?";
+    public static final String CREATE_USER = "INSERT INTO LAB2_ZV_USER (EMPLOYEE_ID, USERNAME, PASSWORD, ROLE, ENABLE) VALUES (LAB2_ZV_USER_SEQ.nextval, ?, ?, ?, ?)";
+
+}

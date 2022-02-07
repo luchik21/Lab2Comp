@@ -51,7 +51,7 @@ public class DaoCustomerImpl implements DaoCustomer {
     public List<Customer> selectAllCustomers() {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call selectAllCustomers()");
-            preparedStatement = connection.prepareStatement("SELECT * FROM LAB2_ZV_CUSTOMER");
+            preparedStatement = connection.prepareStatement(SqlQuery.SELECT_ALL_CUSTOMERS);
             resultSet = preparedStatement.executeQuery();
             customerList = customerParse.getAllCustomer(resultSet);
             return customerList;
@@ -67,7 +67,7 @@ public class DaoCustomerImpl implements DaoCustomer {
     public void deleteCustomer(int id) {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call deleteCustomer()");
-            preparedStatement = connection.prepareStatement("DELETE LAB2_ZV_CUSTOMER WHERE CUSTOMER_ID = ?");
+            preparedStatement = connection.prepareStatement(SqlQuery.DELETE_CUSTOMER);
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e) {
@@ -81,9 +81,7 @@ public class DaoCustomerImpl implements DaoCustomer {
     public void createCustomer(Customer customer) {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call  createCustomer()");
-            preparedStatement = connection.prepareStatement("INSERT INTO LAB2_ZV_CUSTOMER " +
-                    "(CUSTOMER_ID, COMPANY_NAME, COMPANY_BUDGET)  " +
-                    "VALUES (LAB2_ZV_REQUIREMENTS_SEQ.nextval, ?, ?)");
+            preparedStatement = connection.prepareStatement(SqlQuery.CREATE_CUSTOMER);
             preparedStatement.setString(1, customer.getCompanyName());
             preparedStatement.setInt(2, customer.getBudget());
             resultSet = preparedStatement.executeQuery();

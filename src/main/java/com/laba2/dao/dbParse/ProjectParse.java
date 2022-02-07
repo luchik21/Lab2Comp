@@ -30,13 +30,13 @@ public class ProjectParse {
 
     private Project getProject(ResultSet resultSet) {
         try {
-            int id = resultSet.getInt("PROJECT_ID");
-            String projectName = resultSet.getString("PROJECT_NAME");
-            int budget = resultSet.getInt("BUDGET");
-            int location = resultSet.getInt("LOCATION_ID");
-            int customer = resultSet.getInt("CUSTOMER_ID");
-            int requirements = resultSet.getInt("REQUIREMENTS_ID");
-            int time = resultSet.getInt("TIME_TO_BUILD");
+            int id = resultSet.getInt(ColumnLabel.PROJECT_ID);
+            String projectName = resultSet.getString(ColumnLabel.PROJECT_NAME);
+            int budget = resultSet.getInt(ColumnLabel.BUDGET);
+            int location = resultSet.getInt(ColumnLabel.LOCATION_ID);
+            int customer = resultSet.getInt(ColumnLabel.CUSTOMER_ID);
+            int requirements = resultSet.getInt(ColumnLabel.REQUIREMENTS_ID);
+            int time = resultSet.getInt(ColumnLabel.TIME_TO_BUILD);
 
             project = new Project(id, projectName, budget, location, customer, requirements, time);
 

@@ -30,11 +30,11 @@ public class RequirementsParse {
 
     private Requirements getRequirements(ResultSet resultSet) {
         try {
-            int id = resultSet.getInt("REQUIREMENTS_ID");
-            String material = resultSet.getString("MATERIAL");
-            String color = resultSet.getString("COLOR");
-            String type = resultSet.getString("TYPE");
-            int floorsCount = resultSet.getInt("FLOORS_COUNT");
+            int id = resultSet.getInt(ColumnLabel.REQUIREMENTS_ID);
+            String material = resultSet.getString(ColumnLabel.MATERIAL);
+            String color = resultSet.getString(ColumnLabel.COLOR);
+            String type = resultSet.getString(ColumnLabel.TYPE);
+            int floorsCount = resultSet.getInt(ColumnLabel.FLOORS_COUNT);
 
             requirements = new Requirements(id, material, color, type, floorsCount);
 

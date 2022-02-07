@@ -30,9 +30,9 @@ public class CustomerParse {
 
     private Customer getCustomer(ResultSet resultSet) {
         try {
-            int id = resultSet.getInt("CUSTOMER_ID");
-            String name = resultSet.getString("COMPANY_NAME");
-            int budget = resultSet.getInt("COMPANY_BUDGET");
+            int id = resultSet.getInt(ColumnLabel.CUSTOMER_ID);
+            String name = resultSet.getString(ColumnLabel.COMPANY_NAME);
+            int budget = resultSet.getInt(ColumnLabel.COMPANY_BUDGET);
             customer = new Customer(id, name, budget);
         } catch (SQLException e) {
             logger.error("SQLException in get"+e.getMessage());

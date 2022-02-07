@@ -51,7 +51,7 @@ public class DaoUserImpl implements DaoUser {
     public List<User> selectAllUser() {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call selectAllUser()");
-            preparedStatement = connection.prepareStatement("SELECT * FROM LAB2_ZV_USER ORDER BY EMPLOYEE_ID");
+            preparedStatement = connection.prepareStatement(SqlQuery.SELECT_ALL_USER);
             resultSet = preparedStatement.executeQuery();
             userList = userParse.getAllUser(resultSet);
             return userList;
@@ -67,7 +67,7 @@ public class DaoUserImpl implements DaoUser {
     public void deleteUser(int id) {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call deleteUser()");
-            preparedStatement = connection.prepareStatement("DELETE LAB2_ZV_USER WHERE EMPLOYEE_ID = ?");
+            preparedStatement = connection.prepareStatement(SqlQuery.DELETE_USER);
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e) {
@@ -81,9 +81,7 @@ public class DaoUserImpl implements DaoUser {
     public void createUser(User user) {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call createUser()");
-            preparedStatement = connection.prepareStatement("INSERT INTO LAB2_ZV_USER " +
-                    "(EMPLOYEE_ID, USERNAME, PASSWORD, ROLE, ENABLE)  " +
-                    "VALUES (LAB2_ZV_USER_SEQ.nextval, ?, ?, ?, ?)");
+            preparedStatement = connection.prepareStatement(SqlQuery.CREATE_USER);
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getRole());

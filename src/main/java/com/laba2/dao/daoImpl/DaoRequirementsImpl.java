@@ -43,7 +43,7 @@ public class DaoRequirementsImpl implements DaoRequirements {
             resultSet.close();
             preparedStatement.close();
         } catch (SQLException e) {
-            logger.error("Error in close"+e.getMessage());
+            logger.error("Error in close" + e.getMessage());
         }
     }
 
@@ -51,12 +51,12 @@ public class DaoRequirementsImpl implements DaoRequirements {
     public List<Requirements> selectAllRequirements() {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call selectAllRequirements()");
-            preparedStatement = connection.prepareStatement("SELECT * FROM LAB2_ZV_REQUIREMENTS");
+            preparedStatement = connection.prepareStatement(SqlQuery.SELECT_ALL_REQUIREMENTS);
             resultSet = preparedStatement.executeQuery();
             requirementsList = requirementsParse.getAllRequirements(resultSet);
             return requirementsList;
         } catch (SQLException e) {
-            logger.error("SQLException in selectAll"+e.getMessage());
+            logger.error("SQLException in selectAll" + e.getMessage());
         } finally {
             close();
         }
@@ -67,11 +67,11 @@ public class DaoRequirementsImpl implements DaoRequirements {
     public void deleteRequirements(int id) {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call deleteRequirements()");
-            preparedStatement = connection.prepareStatement("DELETE LAB2_ZV_REQUIREMENTS WHERE REQUIREMENTS_ID = ?");
+            preparedStatement = connection.prepareStatement(SqlQuery.DELETE_REQUIREMENTS);
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e) {
-            logger.error("SQLException in delete"+e.getMessage());
+            logger.error("SQLException in delete" + e.getMessage());
         } finally {
             close();
         }
@@ -81,16 +81,14 @@ public class DaoRequirementsImpl implements DaoRequirements {
     public void createRequirements(Requirements requirements) {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call createRequirements()");
-            preparedStatement = connection.prepareStatement("INSERT INTO LAB2_ZV_REQUIREMENTS " +
-                    "(REQUIREMENTS_ID, MATERIAL, COLOR, TYPE, FLOORS_COUNT)  " +
-                    "VALUES (LAB2_ZV_REQUIREMENTS_SEQ.nextval, ?, ?, ?, ?)");
+            preparedStatement = connection.prepareStatement(SqlQuery.CREATE_REQUIREMENTS);
             preparedStatement.setString(1, requirements.getMaterial());
             preparedStatement.setString(2, requirements.getColor());
             preparedStatement.setString(3, requirements.getType());
             preparedStatement.setInt(4, requirements.getFloorsCount());
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e) {
-            logger.error("SQLException in create"+e.getMessage());
+            logger.error("SQLException in create" + e.getMessage());
         } finally {
             close();
         }

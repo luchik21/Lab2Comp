@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class JobController {
 
-    DaoJobImpl daoJob;
+    private DaoJobImpl daoJob;
 
     @Autowired
     public void setDaoJob(DaoJobImpl daoJob) {

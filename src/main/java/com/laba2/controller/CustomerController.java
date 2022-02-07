@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class CustomerController {
 
-    DaoCustomerImpl daoCustomer;
+    private DaoCustomerImpl daoCustomer;
 
     @Autowired
     public void setDaoCustomer(DaoCustomerImpl daoCustomer) {

@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LocationController {
 
-    DaoLocationImpl daoLocation;
+    private DaoLocationImpl daoLocation;
 
     @Autowired
     public void setDaoLocation(DaoLocationImpl daoLocation) {

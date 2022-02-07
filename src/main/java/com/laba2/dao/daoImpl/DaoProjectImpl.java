@@ -26,7 +26,6 @@ public class DaoProjectImpl implements DaoProject {
     private PreparedStatement preparedStatement;
     private List<Project> projectList = new ArrayList<>();
 
-
     private DbInterface dbInterface;
 
     @Autowired
@@ -46,20 +45,19 @@ public class DaoProjectImpl implements DaoProject {
             resultSet.close();
             preparedStatement.close();
         } catch (SQLException e) {
-            logger.error("Error in close"+e.getMessage());
+            logger.error("Error in close" + e.getMessage());
         }
     }
 
     @Override
     public List<Project> selectAllProject() {
         try (Connection connection = dbInterface.getConnection()) {
-            preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM LAB2_ZV_PROJECT");
+            preparedStatement = connection.prepareStatement(SqlQuery.SELECT_ALL_PROJECT);
             resultSet = preparedStatement.executeQuery();
             projectList = projectParse.getAllProject(resultSet);
             return projectList;
         } catch (SQLException e) {
-            logger.error("SQLException in selectAll"+e.getMessage());
+            logger.error("SQLException in selectAll" + e.getMessage());
         } finally {
             close();
         }
@@ -69,13 +67,13 @@ public class DaoProjectImpl implements DaoProject {
     @Override
     public Project findById(int id) {
         try (Connection connection = dbInterface.getConnection()) {
-            preparedStatement = connection.prepareStatement("SELECT * FROM LAB2_ZV_PROJECT WHERE PROJECT_ID = ?");
+            preparedStatement = connection.prepareStatement(SqlQuery.FIND_PROJECT_BY_ID);
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
             project = projectParse.getOneProject(resultSet);
             return project;
         } catch (SQLException e) {
-            logger.error("SQLException in findById"+e.getMessage());
+            logger.error("SQLException in findById" + e.getMessage());
         } finally {
             close();
         }
@@ -86,9 +84,7 @@ public class DaoProjectImpl implements DaoProject {
     public void editProject(Project project) {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call editProject()");
-            preparedStatement = connection.prepareStatement("UPDATE LAB2_ZV_PROJECT " +
-                    "SET PROJECT_NAME = ?,BUDGET = ?, LOCATION_ID = ?, CUSTOMER_ID = ?, " +
-                    "REQUIREMENTS_ID = ?, TIME_TO_BUILD = ? WHERE PROJECT_ID = ?");
+            preparedStatement = connection.prepareStatement(SqlQuery.EDIT_PROJECT);
             preparedStatement.setString(1, project.getProjectName());
             preparedStatement.setInt(2, project.getBudget());
             preparedStatement.setInt(3, project.getLocation());
@@ -98,7 +94,7 @@ public class DaoProjectImpl implements DaoProject {
             preparedStatement.setInt(7, project.getId());
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e) {
-            logger.error("SQLException in editEmployee() "+e.getMessage());
+            logger.error("SQLException in editEmployee() " + e.getMessage());
         } finally {
             close();
         }
@@ -108,9 +104,7 @@ public class DaoProjectImpl implements DaoProject {
     public void createProject(Project project) {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call createProject()");
-            preparedStatement = connection.prepareStatement("INSERT INTO LAB2_ZV_PROJECT " +
-                    "(PROJECT_ID, PROJECT_NAME, BUDGET, LOCATION_ID, CUSTOMER_ID, REQUIREMENTS_ID, TIME_TO_BUILD)  " +
-                    "VALUES (LAB2_ZV_PROJECT_SEQ.nextval, ?, ?, ?, ?, ?, ?)");
+            preparedStatement = connection.prepareStatement(SqlQuery.CREATE_PROJECT);
             preparedStatement.setString(1, project.getProjectName());
             preparedStatement.setInt(2, project.getBudget());
             preparedStatement.setInt(3, project.getLocation());
@@ -119,7 +113,7 @@ public class DaoProjectImpl implements DaoProject {
             preparedStatement.setInt(6, project.getTimeToBuild());
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e) {
-            logger.error("SQLException in create"+e.getMessage());
+            logger.error("SQLException in create" + e.getMessage());
         } finally {
             close();
         }
@@ -129,11 +123,11 @@ public class DaoProjectImpl implements DaoProject {
     public void deleteProject(int id) {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call deleteProject()");
-            preparedStatement = connection.prepareStatement("DELETE LAB2_ZV_PROJECT WHERE PROJECT_ID = ?");
+            preparedStatement = connection.prepareStatement(SqlQuery.DELETE_PROJECT);
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e) {
-            logger.error("SQLException in delete"+e.getMessage());
+            logger.error("SQLException in delete" + e.getMessage());
         } finally {
             close();
         }
@@ -143,13 +137,13 @@ public class DaoProjectImpl implements DaoProject {
     public List<Project> findByCustomerId(int id) {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call findByCustomerId()");
-            preparedStatement = connection.prepareStatement("SELECT * FROM LAB2_ZV_PROJECT WHERE CUSTOMER_ID = ?");
+            preparedStatement = connection.prepareStatement(SqlQuery.FIND_BY_CUSTOMER_ID);
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
             projectList = projectParse.getAllProject(resultSet);
             return projectList;
         } catch (SQLException e) {
-            logger.error("SQLException in findById"+e.getMessage());
+            logger.error("SQLException in findById" + e.getMessage());
         } finally {
             close();
         }
@@ -160,13 +154,13 @@ public class DaoProjectImpl implements DaoProject {
     public List<Project> findByLocationId(int id) {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call findByLocationId()");
-            preparedStatement = connection.prepareStatement("SELECT * FROM LAB2_ZV_PROJECT WHERE LOCATION_ID = ?");
+            preparedStatement = connection.prepareStatement(SqlQuery.FIND_BY_LOCATION_ID);
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
             projectList = projectParse.getAllProject(resultSet);
             return projectList;
         } catch (SQLException e) {
-            logger.error("SQLException in findById"+e.getMessage());
+            logger.error("SQLException in findById" + e.getMessage());
         } finally {
             close();
         }
@@ -177,13 +171,13 @@ public class DaoProjectImpl implements DaoProject {
     public List<Project> findByRequirementsId(int id) {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call findByRequirementsId()");
-            preparedStatement = connection.prepareStatement("SELECT * FROM LAB2_ZV_PROJECT WHERE REQUIREMENTS_ID = ?");
+            preparedStatement = connection.prepareStatement(SqlQuery.FIND_BY_REQUIREMENTS_ID);
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
             projectList = projectParse.getAllProject(resultSet);
             return projectList;
         } catch (SQLException e) {
-            logger.error("SQLException in findById"+e.getMessage());
+            logger.error("SQLException in findById" + e.getMessage());
         } finally {
             close();
         }

@@ -1,7 +1,5 @@
 package com.laba2.models;
 
-import java.util.Objects;
-
 public class Location {
 
     private int locationId;

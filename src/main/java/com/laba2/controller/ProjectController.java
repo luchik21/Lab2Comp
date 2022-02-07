@@ -17,10 +17,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ProjectController {
 
-    DaoProjectImpl daoProject;
-    DaoCustomerImpl daoCustomer;
-    DaoRequirementsImpl daoRequirements;
-    DaoLocationImpl daoLocation;
+    private DaoProjectImpl daoProject;
+    private DaoCustomerImpl daoCustomer;
+    private DaoRequirementsImpl daoRequirements;
+    private DaoLocationImpl daoLocation;
 
     @Autowired
     public void setDaoProject(DaoProjectImpl daoProject) {
@@ -103,7 +103,7 @@ public class ProjectController {
     @RequestMapping(value = "/findByCustomer/{id}", method = RequestMethod.GET)
     public ModelAndView findProjectByCustomer(@PathVariable int id) {
         ModelAndView modelAndView = new ModelAndView();
-        if(id == 0){
+        if (id == 0) {
             modelAndView.setViewName("error");
             return modelAndView;
         }
@@ -118,7 +118,7 @@ public class ProjectController {
     @RequestMapping(value = "/findByLocation/{id}", method = RequestMethod.GET)
     public ModelAndView findProjectByLocation(@PathVariable int id) {
         ModelAndView modelAndView = new ModelAndView();
-        if(id == 0){
+        if (id == 0) {
             modelAndView.setViewName("error");
             return modelAndView;
         }
@@ -133,7 +133,7 @@ public class ProjectController {
     @RequestMapping(value = "/findByRequirements/{id}", method = RequestMethod.GET)
     public ModelAndView findProjectByRequirements(@PathVariable int id) {
         ModelAndView modelAndView = new ModelAndView();
-        if(id == 0){
+        if (id == 0) {
             modelAndView.setViewName("error");
             return modelAndView;
         }

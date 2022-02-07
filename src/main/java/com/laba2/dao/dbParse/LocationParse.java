@@ -31,11 +31,11 @@ public class LocationParse {
 
     private Location getLocation(ResultSet resultSet) {
         try {
-            int id = resultSet.getInt("LOCATION_ID");
-            String city = resultSet.getString("CITY");
-            String address = resultSet.getString("ADDRESS");
-            int area = resultSet.getInt("AREA");
-            String permission = resultSet.getString("PERMISSION");
+            int id = resultSet.getInt(ColumnLabel.LOCATION_ID);
+            String city = resultSet.getString(ColumnLabel.CITY);
+            String address = resultSet.getString(ColumnLabel.ADDRESS);
+            int area = resultSet.getInt(ColumnLabel.AREA);
+            String permission = resultSet.getString(ColumnLabel.PERMISSION);
 
             location = new Location(id, city, address, area, permission);
 

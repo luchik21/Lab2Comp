@@ -43,7 +43,7 @@ public class DaoLocationImpl implements DaoLocation {
             resultSet.close();
             preparedStatement.close();
         } catch (SQLException e) {
-            logger.error("Error in close"+e.getMessage());
+            logger.error("Error in close" + e.getMessage());
         }
     }
 
@@ -51,12 +51,12 @@ public class DaoLocationImpl implements DaoLocation {
     public List<Location> selectAllLocation() {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call selectAllLocation()");
-            preparedStatement = connection.prepareStatement("SELECT * FROM LAB2_ZV_LOCATION");
+            preparedStatement = connection.prepareStatement(SqlQuery.SELECT_ALL_LOCATION);
             resultSet = preparedStatement.executeQuery();
             locationList = locationParse.getAllLocation(resultSet);
             return locationList;
         } catch (SQLException e) {
-            logger.error("SQLException in selectAll"+e.getMessage());
+            logger.error("SQLException in selectAll" + e.getMessage());
         } finally {
             close();
         }
@@ -67,11 +67,11 @@ public class DaoLocationImpl implements DaoLocation {
     public void deleteLocation(int id) {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call deleteLocation()");
-            preparedStatement = connection.prepareStatement("DELETE LAB2_ZV_LOCATION WHERE LOCATION_ID = ?");
+            preparedStatement = connection.prepareStatement(SqlQuery.DELETE_LOCATION);
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e) {
-            logger.error("SQLException in delete"+e.getMessage());
+            logger.error("SQLException in delete" + e.getMessage());
         } finally {
             close();
         }
@@ -81,16 +81,14 @@ public class DaoLocationImpl implements DaoLocation {
     public void createLocation(Location location) {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call createLocation()");
-            preparedStatement = connection.prepareStatement("INSERT INTO LAB2_ZV_LOCATION " +
-                    "(LOCATION_ID, CITY, ADDRESS, AREA, PERMISSION)  " +
-                    "VALUES (LAB2_ZV_REQUIREMENTS_SEQ.nextval, ?, ?, ?, ?)");
+            preparedStatement = connection.prepareStatement(SqlQuery.CREATE_LOCATION);
             preparedStatement.setString(1, location.getCity());
             preparedStatement.setString(2, location.getAddress());
             preparedStatement.setInt(3, location.getArea());
             preparedStatement.setString(4, location.getPermission());
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e) {
-            logger.error("SQLException in create"+e.getMessage());
+            logger.error("SQLException in create" + e.getMessage());
         } finally {
             close();
         }

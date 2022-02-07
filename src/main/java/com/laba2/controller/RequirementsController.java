@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class RequirementsController {
 
-    DaoRequirementsImpl daoRequirements;
+    private DaoRequirementsImpl daoRequirements;
 
     @Autowired
     public void setDaoRequirements(DaoRequirementsImpl daoRequirements) {

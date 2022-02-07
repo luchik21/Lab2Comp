@@ -16,9 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class EmployeeController {
 
-    DaoEmployeeImpl daoEmployee;
-    DaoJobImpl daoJob;
-    DaoProjectImpl daoProject;
+    private DaoEmployeeImpl daoEmployee;
+    private DaoJobImpl daoJob;
+    private DaoProjectImpl daoProject;
 
     @Autowired
     public void setDaoEmployee(DaoEmployeeImpl daoEmployee) {
@@ -93,7 +93,7 @@ public class EmployeeController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("projects", daoProject.selectAllProject());
         modelAndView.addObject("listEmployee", daoEmployee.selectAllEmployee());
-        modelAndView.addObject("jobs",daoJob.selectAllJob());
+        modelAndView.addObject("jobs", daoJob.selectAllJob());
         modelAndView.addObject("more", 1);
         modelAndView.addObject("task", 1);
         modelAndView.setViewName("viewAll");
@@ -104,7 +104,7 @@ public class EmployeeController {
     @RequestMapping(value = "/findByProject/{id}", method = RequestMethod.GET)
     public ModelAndView findEmployeeByProject(@PathVariable int id) {
         ModelAndView modelAndView = new ModelAndView();
-        if(id == 0){
+        if (id == 0) {
             modelAndView.setViewName("error");
             return modelAndView;
         }
@@ -119,7 +119,7 @@ public class EmployeeController {
     @RequestMapping(value = "/findByJob/{id}", method = RequestMethod.GET)
     public ModelAndView findEmployeeByJob(@PathVariable int id) {
         ModelAndView modelAndView = new ModelAndView();
-        if(id == 0){
+        if (id == 0) {
             modelAndView.setViewName("error");
             return modelAndView;
         }

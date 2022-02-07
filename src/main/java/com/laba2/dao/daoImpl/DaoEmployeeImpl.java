@@ -52,7 +52,7 @@ public class DaoEmployeeImpl implements DaoEmployee {
     public List<Employee> selectAllEmployee() {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call selectAllEmployee()");
-            preparedStatement = connection.prepareStatement("SELECT * FROM LAB2_ZV_EMPLOYEE ORDER BY EMPLOYEE_ID");
+            preparedStatement = connection.prepareStatement(SqlQuery.SELECT_ALL_EMPLOYEE);
             resultSet = preparedStatement.executeQuery();
             employeeList = employeeParse.getAllEmployee(resultSet);
             return employeeList;
@@ -68,7 +68,7 @@ public class DaoEmployeeImpl implements DaoEmployee {
     public Employee findById(int id) {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call findById()");
-            preparedStatement = connection.prepareStatement("SELECT * FROM LAB2_ZV_EMPLOYEE WHERE EMPLOYEE_ID = ?");
+            preparedStatement = connection.prepareStatement(SqlQuery.FIND_EMPLOYEE_BY_ID);
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
             employee = employeeParse.getOneEmployee(resultSet);
@@ -85,7 +85,7 @@ public class DaoEmployeeImpl implements DaoEmployee {
     public List<Employee> findByProjectId(int id) {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call findByProjectId()");
-            preparedStatement = connection.prepareStatement("SELECT * FROM LAB2_ZV_EMPLOYEE WHERE PROJECT_ID = ?");
+            preparedStatement = connection.prepareStatement(SqlQuery.FIND_BY_PROJECT_ID);
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
             employeeList = employeeParse.getAllEmployee(resultSet);
@@ -103,7 +103,7 @@ public class DaoEmployeeImpl implements DaoEmployee {
     public List<Employee> findByJobId(int id) {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call findByJobId()");
-            preparedStatement = connection.prepareStatement("SELECT * FROM LAB2_ZV_EMPLOYEE WHERE JOB_ID = ?");
+            preparedStatement = connection.prepareStatement(SqlQuery.FIND_BY_JOB_ID);
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
             employeeList = employeeParse.getAllEmployee(resultSet);
@@ -120,8 +120,7 @@ public class DaoEmployeeImpl implements DaoEmployee {
     public void editEmployee(Employee employee) {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call editEmployee()");
-            preparedStatement = connection.prepareStatement("UPDATE LAB2_ZV_EMPLOYEE" +
-                    " SET FIRSTNAME = ?,LASTNAME = ?, PROJECT_ID = ?, JOB_ID = ?, SALARY = ? WHERE EMPLOYEE_ID = ?");
+            preparedStatement = connection.prepareStatement(SqlQuery.EDIT_EMPLOYEE);
             preparedStatement.setString(1, employee.getFirstname());
             preparedStatement.setString(2, employee.getLastname());
             preparedStatement.setInt(3, employee.getProject());
@@ -141,7 +140,7 @@ public class DaoEmployeeImpl implements DaoEmployee {
     public void deleteEmployee(int id) {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call deleteEmployee()");
-            preparedStatement = connection.prepareStatement("DELETE LAB2_ZV_EMPLOYEE WHERE EMPLOYEE_ID = ?");
+            preparedStatement = connection.prepareStatement(SqlQuery.DELETE_EMPLOYEE);
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e) {
@@ -155,9 +154,7 @@ public class DaoEmployeeImpl implements DaoEmployee {
     public void createEmployee(Employee employee) {
         try (Connection connection = dbInterface.getConnection()) {
             logger.debug("call createEmployee()");
-            preparedStatement = connection.prepareStatement("INSERT INTO LAB2_ZV_EMPLOYEE " +
-                    "(EMPLOYEE_ID, FIRSTNAME, LASTNAME, PROJECT_ID, JOB_ID, SALARY)  " +
-                    "VALUES (LAB2_ZV_EMPLOYEE_SEQ.nextval, ?, ?, ?, ?, ?)");
+            preparedStatement = connection.prepareStatement(SqlQuery.CREATE_EMPLOYEE);
             preparedStatement.setString(1, employee.getFirstname());
             preparedStatement.setString(2, employee.getLastname());
             preparedStatement.setInt(3, employee.getProject());

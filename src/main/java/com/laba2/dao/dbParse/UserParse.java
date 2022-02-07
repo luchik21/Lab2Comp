@@ -30,11 +30,11 @@ public class UserParse {
 
     public User getUser(ResultSet resultSet) {
         try {
-            int id = resultSet.getInt("EMPLOYEE_ID");
-            String username = resultSet.getString("USERNAME");
-            String password = resultSet.getString("PASSWORD");
-            String role = resultSet.getString("ROLE");
-            int enable = resultSet.getInt("ENABLE");
+            int id = resultSet.getInt(ColumnLabel.EMPLOYEE_ID);
+            String username = resultSet.getString(ColumnLabel.USERNAME);
+            String password = resultSet.getString(ColumnLabel.PASSWORD);
+            String role = resultSet.getString(ColumnLabel.ROLE);
+            int enable = resultSet.getInt(ColumnLabel.ENABLE);
             user = new User(id, username, password, role, enable);
 
         } catch (SQLException e) {
