@@ -18,6 +18,7 @@ Welcome to Main page
     <li><a href="viewAll">View employee</a></li>
     <li><a href="seeAllAboutProjects">View projects</a></li>
     <li><a href="seeAccounts">See accounts to log in</a></li>
+    <li><a href="viewNews">See news</a></li>
 </ul>
 
 <c:if test="${task==1}">
